@@ -1,0 +1,49 @@
+/* TOOLTIPS */
+
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+xul|tooltip {
+    --bg-color: hsl(0, 0%, 30%);
+    --fg-color: hsl(0, 0%, 75%);
+    --ov-color: hsl(0, 0%, 40%);
+
+    --b-color: rgba(220, 220, 220, 0.2);
+    --s-color: #1b1b1b;
+    --s-color: red;
+
+    --bg-color: hsl(318.667, 42.056%, 20.98%);
+
+
+    -moz-appearance: none !important;
+    border-color: var(--b-color) !important;
+    color: var(--toolbar-color, var(--lwt-sidebar-text-color, var(--fg-color))) !important;
+    background-color: var(--toolbar-bgcolor, var(--lwt-sidebar-background-color, var(--bg-color))) !important;
+    border-radius: 2px !important;
+    /*padding: 0.3em 0.6em !important;*/
+
+    background-image: linear-gradient(to bottom, var(--ov-color) 0%, var(--ov-color) 100%) !important;
+    background-blend-mode: overlay !important;
+    opacity: 1 !important;
+}
+
+xul|tooltip * {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+xul|tooltip .tooltip-label {
+    background: transparent !important;
+    /*height: 5px;*/
+}
+
+xul|tooltip .tooltip-label:first-child:not(:only-child) {
+    font-weight: bold;
+}
+
+xul|tooltip .tooltip-label:not([hidden="true"]) + .tooltip-label {
+    border-top: 1px solid var(--b-color) !important;
+    margin-top: 0.3em !important;
+}
+

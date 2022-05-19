@@ -1,0 +1,86 @@
+/* SCROLL BAR */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+
+scrollbar, scrollbar[orient="vertical"], scrollbar[orient="horizontal"] {
+    --scroll-size: 6px;
+    --scroll-padding: 3px;
+    --margin: 0px;
+
+    /*z-index: 2147483647;*/
+
+    -moz-appearance: none !important;
+    background-color: transparent !important;
+    position: relative !important;
+    padding: 0px !important;
+    --scroll-final-size: calc(var(--scroll-size) + calc(var(--scroll-padding) * 2) + var(--margin));
+    transition: all ease 120ms !important;
+}
+
+scrollbar[orient="vertical"] {
+    width: var(--scroll-final-size) !important;
+    min-width: auto !important;
+    margin-left: calc(var(--scroll-final-size) * -1) !important;
+}
+
+scrollbar[orient="horizontal"] {
+    height: var(--scroll-final-size) !important;
+    min-height: auto !important;
+    margin-top: calc(var(--scroll-final-size) * -1) !important;
+}
+
+slider, slider[orient="vertical"], slider[orient="horizontal"] {
+    -moz-appearance: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: var(--scroll-padding) !important;
+    transition: background ease 120ms !important;
+}
+
+thumb {
+    border-radius: calc(var(--scroll-size) / 2) !important;
+    cursor: default;
+    opacity: 0.5;
+    border: 0px solid !important;
+    box-shadow: none !important;
+    transition: all ease 120ms !important;
+}
+
+thumb[orient="vertical"] {
+    min-height: 15px !important;
+}
+
+thumb[orient="horizontal"] {
+    min-width: 15px !important;
+}
+
+scrollbar:hover {
+    z-index: 2147483647 !important;
+}
+
+slider:hover thumb {
+    opacity: 0.7;
+    /*transition-delay: 900ms !important;*/
+}
+
+slider:hover {
+    background: rgba(100, 100, 100, 0.3) !important;
+    transition-delay: 900ms !important;
+}
+
+thumb:hover {
+    opacity: 0.8 !important;
+}
+
+thumb:active {
+    opacity: 0.9 !important;
+}
+
+
+scrollcorner, scrollbarbutton {
+    -moz-appearance: none !important;
+    background-color: transparent !important;
+    display:none !important;
+}
