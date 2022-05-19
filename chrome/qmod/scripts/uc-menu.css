@@ -1,0 +1,244 @@
+@namespace "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+/* Menu Bar */
+
+toolbar[type="menubar"] {
+    border-bottom: 1px solid var(--theme-splitter-color, transparent);
+}
+
+toolbar[type="menubar"], menubar {
+    -moz-appearance: none !important;
+    background-color: var(--theme-toolbar-background, inherit) !important;
+    color: var(--theme-toolbar-color, inherit) !important;
+    /*     background: rebeccapurple !important; */
+}
+
+menubar > menu:-moz-window-inactive {
+    color: inherit !important;
+}
+
+menubar > menu {
+    margin: 0 !important;
+    padding: 2px 4px !important;
+}
+
+/* Menu POPUP */
+
+.sidebar-panel menupopup {
+    --bg-color: hsl(0, 0%, 30%);
+    --fg-color: hsl(0, 0%, 75%);
+    --b-color: rgba(220, 220, 220, 0.2);
+
+    /*     --bg-color: pink; */
+    /*     --fg-color: red; */
+    /*     --b-color: blue; */
+    --panel-separator-color: var(--b-color);
+
+    --arrowpanel-color: var(--lwt-sidebar-text-color, var(--fg-color));
+    --arrowpanel-border-color: var(--b-color);
+    --arrowpanel-background: var(--lwt-sidebar-background-color, var(--bg-color));
+}
+
+menupopup {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    color: var(--theme-toolbar-color, var(--arrowpanel-color)) !important;
+    /*border: 1px solid var(--theme-splitter-color, var(--arrowpanel-border-color)) !important;*/
+    /*background-color: var(--theme-toolbar-background, var(--arrowpanel-background)) !important;*/
+    border: 1px solid var(--arrowpanel-border-color, var(--theme-splitter-color)) !important;
+    background-color: var(--arrowpanel-background, var(--theme-toolbar-background)) !important;
+    --space: 4px;
+    --rowsize: 25px;
+    padding: var(--space) 0 !important;
+    border-radius: var(--arrowpanel-border-radius) !important;
+    /*     color-adjust: exact; */
+
+}
+
+
+arrowscrollbox, .menupopup-arrowscrollbox {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: inherit !important;
+    border: 0 !important;
+}
+
+menuseparator {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    min-height: 1px !important;
+    color: var(--panel-separator-color, var(--arrowpanel-border-color, var(--theme-splitter-color, red))) !important;
+    border-top: 0px solid currentColor !important;
+    border-bottom: none !important;
+    margin: var(--space) var(--space) !important;
+    padding: 0 !important;
+    opacity: 0.85;
+    height: 1px !important;
+    background: currentColor !important;
+}
+
+menupopup menu {
+    background: transparent !important;
+}
+
+menupopup menu, menupopup menuitem:not([type="radio"]):not([type="checkbox"]), menupopup menucaption {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    color: var(--theme-toolbar-color, var(--arrowpanel-color)) !important;
+    padding: 0px 7px !important;
+    height: var(--rowsize) !important;
+    border: 0 !important;
+}
+
+menuitem {
+    color: var(--theme-toolbar-color, var(--arrowpanel-color)) !important;
+}
+
+.menu-text {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-left: 21px !important;
+}
+
+menupopup menu {
+    padding-right: 8px !important;
+}
+
+menupopup menugroup .menuitem-iconic {
+    height: var(--rowsize) !important;
+}
+
+menupopup menugroup {
+    -moz-appearance: none !important;
+    margin: 0 !important;
+    padding: 0 var(--space) !important;
+    padding: 0;
+    background-color: transparent !important;
+}
+
+menupopup .menu-iconic-left {
+    color: inherit !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 4px !important;
+    min-width: 16px;
+}
+
+menupopup .menu-iconic-icon {
+    -moz-context-properties: fill, fill-opacity;
+    color: inherit !important;
+    fill: var(--lwt-toolbarbutton-icon-fill, currentColor) !important;
+    fill-opacity: var(--toolbarbutton-icon-fill-opacity, 1) !important;
+    text-shadow: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+}
+
+menu[disabled="true"], menuitem[disabled="true"], menu[_moz-menuactive="true"][disabled="true"], menuitem[_moz-menuactive="true"][disabled="true"] {
+    opacity: 0.4 !important;
+    background: transparent !important;
+}
+
+menu[_moz-menuactive="true"]:not([disabled="true"]), menuitem[_moz-menuactive="true"]:not([disabled="true"]) {
+    /*color: inherit !important;*/
+    background-color: color-mix(in srgb, currentColor 17%, transparent) !important;
+}
+
+.menu-accel, .menu-iconic-accel, .menu-text, .menu-iconic-text {
+    color: inherit !important;
+}
+
+/* Menu Arrow */
+
+.menu-right {
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, fill-opacity;
+    list-style-image: none !important;
+    color: inherit !important;
+    fill: currentColor !important;
+    padding-bottom: 0;
+    padding-top: 0;
+    fill-opacity: 0.8 !important;
+    background-image: url(chrome://global/skin/icons/arrow-right.svg) !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    height: 12px !important;
+    width: 12px !important;
+    margin: 0 !important;
+}
+
+.menu-accel-container {
+    margin-right: 0px !important;
+}
+
+
+/* ::::: checkbox menuitem ::::: */
+
+menuitem[checked="true"] {
+    -moz-appearance: none !important;
+    fill-opacity: 0.8 !important;
+}
+
+menuitem[type="checkbox"] {
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    padding-inline-start: 0 !important: 
+
+    stroke-opacity: 0.5;
+    fill-opacity: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' fill-opacity='context-fill-opacity' stroke='white' stroke-opacity='context-stroke-opacity' viewBox='0 0 18 18'%3E%3Crect x='0.5' y='0.5' width='17' height='17' rx='2' fill='none' stroke='context-stroke' stroke-opacity='context-stroke-opacity' stroke-width='1' /%3E%3Cpath transform='translate(1, 1)' fill='context-fill' fill-opacity='context-fill-opacity' stroke='none' stroke-width='0.5' d='M6 14a1 1 0 0 1-.707-.293l-3-3a1 1 0 0 1 1.414-1.414l2.157 2.157 6.316-9.023a1 1 0 0 1 1.639 1.146l-7 10a1 1 0 0 1-.732.427A.863.863 0 0 1 6 14z'%3E%3C/path%3E%3C/svg%3E%0A");
+    background-origin: content-box;
+    background-repeat: no-repeat !important;
+    background-position-y: center;
+    background-size: 16px !important;
+}
+
+/* ::::: radio menuitem ::::: */
+
+menuitem[type="radio"] {
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+
+
+    stroke-opacity: 0.5;
+    fill-opacity: 0;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='context-fill' fill-opacity='context-fill-opacity' stroke='context-stroke' stroke-opacity='context-stroke-opacity' viewBox='0 0 16 16'%3E%3Ccircle r='7.5' cx='50%25' cy='50%25' stroke-width = '1' fill= 'none' stroke = 'context-stroke' stroke-opacity = 'ontext-stroke-opacity' /%3E%3Ccircle r='4' cy='50%25' cx='50%25' stroke='none' fill='context-fill' fill-opacity= 'context-fill-opacity' /%3E%3C/svg%3E%0A");
+    background-origin: content-box;
+    background-repeat: no-repeat !important;
+    background-position-y: center;
+    background-size: 16px !important;
+
+}
+
+/* Windows */
+@media (-moz-windows-non-native-menus){
+    #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+        padding: 0 !important
+    }
+
+    #context-navigation > menuitem[_moz-menuactive="true"] * {
+        background: transparent !important;
+    }
+    
+}
+
+/* Fix Conflicts */
+
+/*#BMB_bookmarksPopup {
+    background: blue !important;
+    border: 0 !important;
+}
+
+#BMB_bookmarksPopup menupopup {
+    padding: 0 !important;
+    margin: 0 !important;
+}*/
+
+/*arrowscrollbox.tabbrowser-arrowscrollbox {
+    background: transparent !important;
+}*/

@@ -1,0 +1,571 @@
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+
+
+
+
+
+input:not([type]),
+/*input:not([type="range"]),*/
+
+input[type="color"],
+input[type="file"],
+input[type="number"],
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="month"],
+input[type="week"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button,
+button[type="submit"],
+button[type="button"],
+button[type="cancel"],
+button[type="reset"] {
+    -moz-appearance: none !important;
+    /*-moz-appearance: none ;*/
+    border: 1px solid hsla(0, 0%, 45%, 0.9);
+    border-radius: 2px;
+    /*     font: unset; */
+    color: inherit;
+    background: inherit;
+    /*border-color: currentColor;*/
+    /*     background: hsla(0, 0%, 45%, 0.5); */
+    padding: 0;
+    margin-block: 0;
+    padding-inline: 0;
+    padding-block: 0;
+    padding: 3px 7px;
+    outline: none !important;
+    /*     transition: background-color cubic-bezier(.07,.95,0,1) 250ms; */
+}
+
+
+
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+}
+
+input:-moz-focusring {
+    outline: none;
+}
+
+input:disabled, button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+input:hover:not(:focus):not(:disabled):not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="button"]):not([type="reset"]) {
+    transition: background-color ease 120ms;
+    background-color: hsla(0, 0%, 45%, 0.1);
+}
+
+
+
+
+
+
+
+/* Input Color */
+
+input[type="color"] {
+    padding: 5px 5px;
+    height: -moz-fit-content;
+    vertical-align: middle;
+}
+
+input[type="color"]::-moz-color-swatch {
+    width: 100%;
+    height: 100%;
+    min-width: 3px;
+    min-height: 1.19em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-color: inherit;
+}
+
+
+
+/* Buttons */
+
+button,
+button[type="submit"],
+button[type="button"],
+button[type="cancel"],
+button[type="reset"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    background: hsla(0, 0%, 45%, 0.5);
+}
+
+button:hover:not(:active):not(:disabled),
+input[type="submit"]:hover:not(:active):not(:disabled),
+input[type="button"]:hover:not(:active):not(:disabled),
+input[type="reset"]:hover:not(:active):not(:disabled) {
+    background: hsla(0, 0%, 45%, 0.60);
+}
+
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+input[type="reset"]:active {
+    background: hsla(0, 0%, 45%, 0.30);
+}
+
+
+
+/* Fieldset */
+
+fieldset {
+    -moz-appearance: none;
+    border: 1px currentColor;
+    border-style: groove;
+    background: unset;
+}
+
+textarea {
+    -moz-appearance: none;
+    color: inherit;
+    border: 1px currentColor;
+    border-style: revert;
+    border-radius: 2px;
+    background-color: inherit;
+    /*     font: unset; */
+}
+
+
+
+/* HTML Checkbox */
+
+input[type="checkbox"] {
+    --border-size: 1px;
+
+    -moz-context-properties: fill, fill-opacity;
+    -moz-appearance: none;
+    /*width: 16px !important;*/
+    /*height: 16px !important;*/
+    width: 16px;
+    height: 16px;
+    /*height: auto !important;*/
+    padding: 0px;
+    padding-block: 0;
+    padding-inline: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    margin: 0;
+    margin-right: 4px;
+    position: relative;
+    /*box-shadow: none;*/
+    box-sizing: border-box;
+    outline: none;
+    fill: currentColor;
+    fill-opacity: 1;
+    border-style: solid;
+    border-color: currentColor;
+    border-width: 0 !important;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+input[type="checkbox"]:before {
+    content: '';
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 0;
+    border: var(--border-size) solid transparent;
+    border-style: inherit;
+    border-color: inherit;
+    box-sizing: border-box;
+    border-radius: 2px;
+    opacity: 0.45;
+    transition: opacity cubic-bezier(0, .9, .63, .63) 200ms;
+    padding-bottom: calc(100% - var(--border-size) * 2);
+}
+
+input[type="checkbox"]:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 0;
+    padding: calc(var(--border-size) + 1px);
+    box-sizing: border-box;
+    background-origin: content-box;
+    background-image: url("chrome://global/skin/icons/check.svg") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0;
+    transition: opacity cubic-bezier(.9, 0, .63, .63) 120ms;
+}
+
+
+
+input[type="checkbox"]:disabled {
+    opacity: 0.5;
+}
+
+input[type="checkbox"]:not(:disabled):hover:before {
+    opacity: 0.9;
+}
+
+input[type="checkbox"]:checked:after {
+    transition: opacity cubic-bezier(0, .9, .63, .63) 120ms;
+    opacity: 1;
+}
+
+label input[type="checkbox"] {
+    margin-bottom: -2px;
+}
+
+
+/* HTML RADIO */
+
+input[type="radio"] {
+    --border-size: 1px;
+
+    -moz-context-properties: fill, fill-opacity;
+    -moz-appearance: none;
+
+    width: 16px !important;
+    /*height: auto !important;*/
+    height: 16px !important;
+    padding: 0px;
+    padding-block: 0;
+    padding-inline: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    margin: 0;
+    margin-right: 4px;
+    position: relative;
+    box-shadow: none;
+    box-sizing: border-box;
+    outline: none;
+    border-width: 0 !important;    
+    fill: currentColor;
+    fill-opacity: 1;
+    border-style: solid;
+    border-color: currentColor;
+    display: inline-block;
+}
+
+input[type="radio"]:before {
+    content: '';
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 0;
+    border: var(--border-size) solid transparent;
+    border-style: inherit;
+    border-color: inherit;
+    box-sizing: border-box;
+    border-radius: 50%;
+    opacity: 0.45;
+    transition: opacity cubic-bezier(0, .9, .63, .63) 200ms;
+    padding-bottom: calc(100% - var(--border-size) * 2);
+    /*     background-color: darkmagenta; */
+}
+
+input[type="radio"]:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 0;
+    padding: calc(var(--border-size) + 0px);
+    box-sizing: border-box;
+    background-origin: content-box;
+    background-image: url("chrome://global/skin/icons/radio.svg") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0;
+    transition: opacity cubic-bezier(.9, 0, .63, .63) 120ms;
+}
+
+
+
+input[type="radio"]:disabled {
+    opacity: 0.5;
+}
+
+input[type="radio"]:not(:disabled):hover:before {
+    opacity: 0.9;
+}
+
+input[type="radio"]:checked:after {
+    transition: opacity cubic-bezier(0, .9, .63, .63) 120ms;
+    opacity: 1;
+}
+
+label input[type="radio"] {
+    margin-bottom: -2px;
+}
+
+
+/* SELECT */
+
+select {
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, fill-opacity;
+    /*font-size: 16px; */
+    /*font-size: 0.9rem; */
+    /*font-family: inherit;*/
+    background-color: inherit;
+    background-image: url("chrome://global/skin/icons/arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: calc(100% - 0.3em);
+    background-size: 1em;
+    cursor: pointer;
+    color: inherit;
+    fill: currentColor;
+    border: 1px solid hsla(0, 0%, 45%, 0.9);
+    border-radius: 2px;
+    padding-inline: 0;
+    padding-block: 0;
+    padding: 2px 0.25em;
+    padding-right: 1.6em;
+    outline: 0 !important;
+    flex: 0 auto;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+select:hover, select:focus {
+    -moz-appearance: none;
+    /*     background-color: hsl(0, 0%, 32%); */
+}
+
+*|*::-moz-display-comboboxcontrol-frame {
+    overflow: -moz-hidden-unscrollable;
+    /* This block-start/end padding plus the combobox block-start/end border need to
+     add up to the block-start/end borderpadding of text inputs and buttons */
+    padding-block: 10px !important;
+    padding-inline: 10px !important;
+    color: unset;
+    white-space: nowrap;
+    text-align: unset;
+    user-select: none;
+    background-color: blue !important;
+    /* Make sure to size correctly if the combobox has a non-auto block-size. */
+    block-size: 100%;
+    /* Try to always display our own text */
+    min-inline-size: max-content;
+    box-sizing: border-box;
+    line-height: -moz-block-height;
+}
+
+
+option {
+    -moz-appearance: none !important;
+    -moz-default-appearance: none;
+    display: block !important;
+    float: none !important;
+    position: static !important;
+    min-block-size: 0em;
+    line-height: normal !important;
+    user-select: none;
+    text-indent: 0;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    text-align: match-parent;
+    padding-inline: 0 !important;
+    padding: 0 !important;
+    background-image: none;
+    background-color: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+
+}
+
+select>option {
+    padding-block: 0 !important;
+    padding-inline: 3px 5px !important;
+}
+
+option:checked {
+    color: inherit;
+    background-color: inherit;
+}
+
+select:focus>option:checked,
+select:focus>optgroup>option:checked {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+
+
+optgroup {
+    -moz-appearance: none !important;
+    display: block !important;
+    float: none !important;
+    position: static !important;
+    font: inherit;
+    line-height: normal !important;
+    font-style: italic;
+    font-weight: bold;
+    font-size: unset;
+    user-select: none;
+    text-indent: 0;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+
+    color: inherit;
+    background-image: none;
+    /*background-color:hsl(0, 0%, 29%);*/
+    /*     background-color: var(--theme-toolbar-background, var(--arrowpanel-background)) !important; */
+    background-color: rgba(1, 0, 0, 0) !important;
+    overflow: hidden;
+}
+
+
+optgroup > option
+optgroup > option:checked {
+    padding-inline-start: 4px !important;
+    padding-inline: 0spx !important;
+    padding: 0 !important;;
+    font-style: normal;
+    font-weight: normal;
+    background-color: red !important;
+}
+
+optgroup:before {
+    display: block ;
+    content: attr(label);
+}
+
+/* select:focus > option:checked,
+select:focus > optgroup > option:checked {
+  background-color: red !important;
+  color: blue !important;
+} */
+
+*|*::-moz-dropdown-list {
+    z-index: 2147483647;
+    background-color: red !important;
+    user-select: none !important;
+    position: static !important;
+    float: none !important;
+
+    /*
+    * We can't change the padding here, because that would affect our
+    * intrinsic inline-size, since we scroll.  But at the same time, we want
+    * to make sure that our inline-start border+padding matches the inline-start
+    * border+padding of a combobox so that our scrollbar will line up
+    * with the dropmarker.  So set our inline-start border to 2px.
+    */
+    border: 1px outset black !important;
+    border-inline-start-width: 2px !important;
+}
+
+
+
+
+
+/* DATETIME */
+
+.datetime-input-box-wrapper {
+    display: inline-flex;
+    flex: 1;
+    background-color: inherit;
+    min-width: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datetime-reset-button {
+    color: inherit;
+    fill: currentColor;
+    opacity: .5;
+    background-color: transparent;
+    border: none;
+    align-self: center;
+    flex: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+
+/* HTML Input Number */
+
+input[type=number]::-moz-number-spin-box {
+    writing-mode: horizontal-tb;
+    display: flex;
+    flex-direction: column;
+    height: 1em;
+    max-height: 1em;
+    align-self: center;
+    justify-content: center;
+    display: none !important;
+}
+
+input[type=number]::-moz-number-spin-up {
+    writing-mode: horizontal-tb;
+    -moz-appearance: spinner-upbutton;
+    display: block;
+    /* bug 926670 */
+    flex-grow: 1;
+    cursor: default;
+    /* Style for when native theming is off: */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="5"><path d="M1,4 L3,0 5,4" fill="dimgrey"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    border: 1px solid darkgray;
+    border-bottom: none;
+    /* [JK] I think the border-*-*-radius properties here can remain physical,
+     as we probably don't want to turn the spinner sideways in vertical writing mode */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: none !important;
+}
+
+input[type=number]::-moz-number-spin-down {
+    writing-mode: horizontal-tb;
+    -moz-appearance: spinner-downbutton;
+    display: block;
+    /* bug 926670 */
+    flex-grow: 1;
+    cursor: default;
+    /* Style for when native theming is off: */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="5"><path d="M1,1 L3,5 5,1" fill="dimgrey"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center top;
+    border: 1px solid darkgray;
+    border-top: none;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: none !important;
+}

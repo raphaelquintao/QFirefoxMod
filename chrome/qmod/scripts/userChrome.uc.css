@@ -1,0 +1,228 @@
+@import url("uc-menu.css");
+/*@import url("uc-html.css");*/
+
+/*@import url("q_scrollbar.as.css");*/
+
+/*@import url("q_tooltip.as.css");*/
+/* @namespace "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"; */
+
+/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); */
+
+@namespace "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+/*toolbarbutton#alltabs-button {
+    -moz-binding: url("userChrome.xml#js");
+}
+
+*|* {
+    -moz-binding: url("userChrome.xml#js")
+}*/
+
+*|html[windowtype="navigator:browser"] {
+    background-color: var(--lwt-accent-color, black) !important;
+}
+
+*|*:root {
+    --q-scroll-base: blue;
+/*     --sidebar-border-color: var(--arrowpanel-background) !important; */
+}
+
+*|* {
+    scrollbar-width: thin;
+    /*scrollbar-color: hsla(325, 50%, 50%, 0.55) transparent;*/
+    /*scrollbar-color: hsla(240, 50%, 50%, 0.55) hsla(127, 49%, 50%, 0.55);*/
+    scrollbar-color: color-mix(in srgb, currentColor 35%, transparent) transparent;
+}
+
+:root[platform="mac"] {
+    /*--monospace-font-family: Menlo, Monospaced !important;*/
+}
+
+:root[platform="win"] {
+    /*--monospace-font-family: Consolas, Monospaced !important;*/
+}
+
+*|*:root[platform="linux"] {
+    --qso: linux;
+
+    /*   --monospace-font-family: Monospaced !important; */
+    /*   --monospace-font-family: DejaVu Sans Mono, Monospace !important; */
+    /*   --monospace-font-family: Noto Mono, Monospace !important; */
+}
+
+
+#browser, browser {
+    background-image: none !important; 
+    background-color: var(--lwt-accent-color, black) !important;
+}
+
+findbar {
+    /*     border-top: 1px solid var(--toolbox-border-bottom-color, var(--sidebar-border-color)) !important; */
+}
+
+/* search-textbox */
+
+#sidebar-search-container #search-box,
+#sidebar-search-container textbox,
+search-textbox {
+    -moz-appearance: none !important;
+    /*     color: var(--lwt-sidebar-text-color, var(--arrowpanel-color)) !important; */
+    /*     background-color: var(--lwt-sidebar-background-color, var(--arrowpanel-background)) !important; */
+    /*     border: 1px solid var(--lwt-sidebar-highlight-background-color, var(--tmp)) !important; */
+    --tmp-bg: color-mix(in srgb, var(--lwt-sidebar-background-color, red) 80%, transparent);
+
+    --tmp-fg: color-mix(in srgb, var(--lwt-sidebar-text-color, currentColor) 20%, transparent);
+
+    --tmp-bd: color-mix(in srgb, currentColor 20%, transparent);
+
+    color: var(--lwt-sidebar-text-color) !important;
+    background-color: color-mix(in srgb, currentColor 2%, transparent) !important;
+    !important;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent) !important;
+    transition: background ease 120ms;
+}
+
+
+#sidebar-search-container #search-box:hover,
+#sidebar-search-container textbox:hover,
+search-textbox:hover {
+    background-color: color-mix(in srgb, currentColor 5%, transparent) !important;
+}
+
+#sidebar-search-container #search-box[focused="true"],
+#sidebar-search-container textbox[focused="true"],
+search-textbox[focused="true"] {
+    background-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+
+#statuspanel-label {
+    --ov-color: hsl(0, 0%, 45%);
+    --b-color: rgba(127, 127, 127, 0.2);
+
+    -moz-appearance: none !important;
+    color: var(--toolbar-color) !important;
+    background-color: var(--toolbar-bgcolor) !important;
+    /*border-color: var(--toolbox-border-bottom-color, var(--chrome-content-separator-color, #535353)) !important;*/
+    border-color: var(--b-color) !important;
+    background-image: linear-gradient(to bottom, var(--ov-color) 0%, var(--ov-color) 100%) !important;
+    background-blend-mode: overlay;
+}
+
+#sidebar-splitter {
+    width: 1px !important;
+    background-color: var(--sidebar-border-color, var(--toolbox-border-bottom-color)) !important;;
+    border: none !important;
+}
+
+
+
+#main-window[sizemode="normal"] {
+    /*     border: 1px solid var(--toolbox-border-bottom-color, red) !important; */
+    /*     border-color: var(--lwt-background-tab-separator-color, red) !important; */
+    /*     border-color: var(--chrome-content-separator-color, red) !important; */
+}
+
+treechildren::-moz-tree-separator {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    border: 0 !important;
+    height: 1px !important;
+    background-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+}
+
+
+toolbarseparator {
+    color: var(--lwt-toolbar-vertical-separator, var(--theme-splitter-color, var(--toolbar-color))) !important;
+}
+
+scrollbar {
+    /*     -moz-appearance: none !important; */
+}
+
+panel[type="arrow"] {
+    --arrowpanel-background: unset !important;
+    --arrowpanel-border-color: unset !important;
+    /*     background-color: red !important; */
+}
+
+#customization-container #searchbar {
+    background-color: var(--lwt-toolbar-field-background-color) !important;
+    border-color: var(--lwt-toolbar-field-border-color) !important;
+    color: var(--lwt-toolbar-field-color) !important;
+}
+
+/* Footer Customization Page */
+
+#customization-footer button {
+    --btn-bd: hsla(240, 5%, 45%, 0.5);
+    --btn-bg: hsla(240, 5%, 45%, 0.1);
+    --btn-bg-hover: hsla(240, 5%, 45%, 0.3);
+    appearance: none !important;
+    -moz-appearance: none !important;
+    position: relative !important;
+    border-radius: 2px !important;
+    border: 1px solid var(--btn-bd) !important;
+    color: inherit !important;
+    background: var(--btn-bg) !important;
+    padding: 0 !important;
+    margin-block: 0 !important;
+    padding-inline: 0 !important;
+    padding-block: 0 !important;
+    ;
+    padding: 3px 7px !important;
+    ;
+    outline: none !important !important;
+    transition: background ease 120ms;
+}
+
+#customization-footer button:hover {
+    background-color: var(--btn-bg-hover) !important;
+}
+
+#customization-footer button dropmarker {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, fill-opacity;
+    width: 14px;
+    height: 14px;
+    color: inherit !important;
+    fill: currentColor !important;
+    background-image: url(chrome://global/skin/icons/arrow-down.svg) !important;
+    background-size: cover;
+    margin-left: 7px;
+    fill-opacity: 0.8;
+}
+
+#customization-footer checkbox {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    /*     background-color: purple; */
+}
+
+#customization-footer checkbox .checkbox-check {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -moz-context-properties: fill, fill-opacity;
+    fill: transparent !important;
+    width: 18px;
+    height: 18px;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 2px;
+    border: 1px solid hsla(240, 5%, 60%, 0.5) !important;
+    margin-right: 7px !important;
+    transition: fill ease 250ms, border ease 120ms;
+    fill-opacity: 0.99;
+}
+
+#customization-footer checkbox:hover .checkbox-check {
+    border: 1px solid hsla(240, 5%, 60%, 0.9) !important;
+}
+
+#customization-footer checkbox .checkbox-check[checked] {
+    background-image: url("chrome://global/skin/icons/check.svg") !important;
+    fill: currentColor !important;
+}

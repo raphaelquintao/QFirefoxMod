@@ -1,0 +1,130 @@
+/* @namespace html "http://www.w3.org/1999/xhtml"; */
+/* @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"; */
+
+@-moz-document url-prefix("chrome://devtools/"), url-prefix("about:devtools-toolbox") {
+        
+    :root,
+    :root.theme-dark,
+    :root.theme-light {
+/*         background-color: var(--theme-body-background) !important; */
+/*         color: var(--theme-body-color) !important; */
+
+        --theme-selection-background: hsla(0, 0%, 100%, 0.2) !important;        
+        --tab-line-selected-color: hsla(0, 0%, 100%, 0.4) !important;
+        /* Default body:11px code:11px tollbar:24px */
+        
+        --theme-body-font-size: 13px !important;
+        --theme-code-font-size: 13px !important; 
+        --theme-toolbar-height: 27px !important;
+        
+        --theme-body-font-size-2x : calc(var(--theme-body-font-size) * 2);
+        
+/*         --editor-footer-height: calc(var(--theme-body-font-size) * (25/11)) !important; */
+        
+/*         --editor-footer-height: var(--theme-toolbar-height) !important; */
+    }
+    
+    button[type], button[type]:hover, button[type]:active {
+        border-radius: 0;
+    }
+    
+    .devtools-searchbox:focus-within, .devtools-textinput:focus, .devtools-searchinput:focus,
+    .devtools-filterinput:focus, .reverse-search:focus-within {
+        border-color: var(--tab-line-selected-color) !important;
+    }
+    .devtools-tab.selected .devtools-tab-line, .tabs-menu-item.is-active .devtools-tab-line {
+        background-color: var(--tab-line-selected-color) !important;
+    }
+    .devtools-tab-line.selected {
+        color: var(--tab-line-selected-color) !important;
+    }
+    
+    .devtools-tabbar {
+        min-height: var(--theme-toolbar-height) !important;
+    }
+
+    .accordion-header-label {
+        font-size: var(--theme-body-font-size) !important;
+    }
+    
+    .devtools-sidepanel-no-result, .layout-properties-header {
+        font-size: 1.0rem !important;
+    }
+    
+    .breadcrumbs-widget-container {
+        max-height: 100% !important;
+        height: auto !important;
+    }
+    
+    /*  Tabs    */
+    .devtools-tab-label, [role="tab"] {
+        font-size: var(--theme-body-font-size) !important;
+    }
+    
+    .tabs-menu *[role="tab"] {
+        height: auto !important;
+    }
+    
+    .tabs-menu {
+        display: flex !important;
+        align-items: end !important;
+    }
+    
+    .tabs-menu-item {
+        display: flex !important;;
+        align-items: end !important;
+    }
+        
+    .devtools-toolbar {
+        height: var(--theme-toolbar-height) !important;
+    }
+    
+    .webconsole-app, .webconsole-filteringbar-wrapper {
+        --primary-toolbar-height: var(--theme-toolbar-height) !important;
+    }
+    
+        
+    .webconsole-app.jsterm-editor .eager-evaluation-result {
+        font-size: var(--theme-body-font-size) !important;
+    }
+    .eager-evaluation-result > * {
+        font-size: 0.72em !important;    
+    }    
+    
+    /*
+     .eager-evaluation-result__icon {
+        min-width: 12px !important; 
+        min-height: 12px !important;  
+        width: 1em !important; 
+        height: 1em !important;
+        background-size: cover !important; 
+    }
+    .eager-evaluation-result__text {
+        line-height: 1 !important;
+        height: auto !important;
+    } */
+    
+    
+    
+    
+    #style-editor-chrome {
+        
+    }
+    
+    .webconsole-output {
+        /*--theme-code-font-size: 12px !important;*/
+    }
+
+    #app-wrapper {
+/*         direction: rtl; */
+    }
+
+    .ruleview-enableproperty::after {
+        display: none !important;
+    }
+
+    .devtools-checkbox-toggle::before {
+        padding-bottom: 0 !important;
+    }
+
+}
