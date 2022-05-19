@@ -22,10 +22,10 @@ This script load QMod.jsm as a Firefox module and has access to all low levels a
 ui.systemUsesDarkTheme = 1
 
 # Basic Files
-* `userChrome.css`
+* `userChrome.uc.css`
     Modify Firefox user interface.
 
-* `userContent.css`
+* `userContent.uc.css`
     Modify all pages.
 
 

@@ -48,7 +48,7 @@ qmod.widgets.menu = {
                 _this._populate_menu(mp, doc);
                 // Repopulate menu every time its opens.
                 // mp.addEventListener('popupshowing', (e) => {
-                    // _this._populate_menu(mp, doc);
+                // _this._populate_menu(mp, doc);
                 // });
 
                 return btn;
@@ -103,7 +103,10 @@ qmod.widgets.menu = {
         };
         mp.append(mi);
 
-        // mp.append(doc.createXULElement('menuseparator'))
+        // Styles menu
+        this._create_styles_menu(mp, doc);
+
+        // mp.append(doc.createXULElement('menuseparator'));
 
         // let sub_menu = qmod.createElement(doc, 'menu', {
         //     id: 'qmod-menu2',
@@ -132,6 +135,35 @@ qmod.widgets.menu = {
         // };
         // menupopup.append(mi2);
 
+    },
+    _create_styles_menu: function(mp, doc) {
+        mp.append(doc.createXULElement('menuseparator'));
+
+        let menu = qmod.createElement(doc, 'menu', {
+            id: 'qmod-styles-menu',
+            container: true,
+            label: 'Styles'
+        });
+        mp.appendChild(menu);
+
+        let styles_popup = qmod.createElement(doc, 'menupopup', {
+            id: 'qmod-styles-submenupopup'
+        });
+        menu.appendChild(styles_popup);
+
+        qmod.files.forEach((item, name) => {
+            console.log(item);
+            if (name.endsWith('.css')) {
+                let label = `${item.name} | Loaded: ${item.loaded} `;
+                let menuitem = qmod.createElement(doc, 'menuitem', {
+                    label: label,
+                    tooltiptext: label,
+                    class: 'menuitem',
+                    disabled: false,
+                });
+                styles_popup.append(menuitem);
+            }
+        });
     },
 
     destroy: function() {
