@@ -12,6 +12,7 @@ qmod.widgets.menu = {
         `)),
         type: qmod.sss.USER_SHEET,
     },
+    styles_menu: null,
 
     init: function() {
         const { CustomizableUI } = window;
@@ -38,9 +39,9 @@ qmod.widgets.menu = {
 
                 let mp = qmod.createElement(doc, 'menupopup', {
                     id: 'qmod-button-popup',
-                    onclick: function() {
-                        event.preventDefault();
-                        event.stopPropagation();
+                    onclick: function(event) {
+                        // event.preventDefault();
+                        // event.stopPropagation();
                     },
                 });
                 btn.appendChild(mp);
@@ -95,72 +96,56 @@ qmod.widgets.menu = {
             disabled: false,
             image: 'chrome://global/skin/icons/reload.svg',
         });
-        mi.onclick = function(e) {
+        mi.onclick = (e) => {
             qmod.toggle();
             let msg = qmod.enabled ? ' Disable' : 'Enable';
-            this.setAttribute('label', msg);
-            this.setAttribute('tooltiptext', msg);
+            e.target.setAttribute('label', msg);
+            e.target.setAttribute('tooltiptext', msg);
+            this._create_styles_menu(mp, doc);
         };
         mp.append(mi);
 
         // Styles menu
+        mp.append(doc.createXULElement('menuseparator'));
         this._create_styles_menu(mp, doc);
-
-        // mp.append(doc.createXULElement('menuseparator'));
-
-        // let sub_menu = qmod.createElement(doc, 'menu', {
-        //     id: 'qmod-menu2',
-        //     container: true,
-        //     label: 'ok1'
-        // });
-        // mp.appendChild(sub_menu);
-
-        // let menupopup = qmod.createElement(doc, 'menupopup', {
-        //     id: 'qmod-submenu'
-        // });
-        // sub_menu.appendChild(menupopup);
-
-        // let mi2 = qmod.createElement(doc, 'menuitem', {
-        //     label: qmod.enabled ? ' Disable' : 'Enable',
-        //     tooltiptext: qmod.enabled ? ' Disable' : 'Enable',
-        //     class: 'menuitem-iconic',
-        //     disabled: false,
-        //     image: 'chrome://global/skin/icons/reload.svg',
-        // });
-        // mi2.onclick = function() {
-        //     qmod.toggle();
-        //     let msg = qmod.enabled ? ' Disable' : 'Enable';
-        //     this.setAttribute('label', msg);
-        //     this.setAttribute('tooltiptext', msg);
-        // };
-        // menupopup.append(mi2);
 
     },
     _create_styles_menu: function(mp, doc) {
-        mp.append(doc.createXULElement('menuseparator'));
+        if(this.styles_menu != null) this.styles_menu.remove();
 
-        let menu = qmod.createElement(doc, 'menu', {
+        this.styles_menu = qmod.createElement(doc, 'menu', {
             id: 'qmod-styles-menu',
             container: true,
             label: 'Styles'
         });
-        mp.appendChild(menu);
+        mp.appendChild(this.styles_menu);
 
         let styles_popup = qmod.createElement(doc, 'menupopup', {
             id: 'qmod-styles-submenupopup'
         });
-        menu.appendChild(styles_popup);
+        this.styles_menu.appendChild(styles_popup);
 
         qmod.files.forEach((item, name) => {
-            console.log(item);
-            if (name.endsWith('.css')) {
-                let label = `${item.name} | Loaded: ${item.loaded} `;
+            // console.log(item);
+            if (name.endsWith('uc.css') || name.endsWith('as.css')) {
+                let label = `${item.name}`;
                 let menuitem = qmod.createElement(doc, 'menuitem', {
                     label: label,
                     tooltiptext: label,
-                    class: 'menuitem',
+                    class: 'menuitem-iconic',
                     disabled: false,
+                    image: (item.loaded) ? 'chrome://global/skin/icons/check.svg' : '',
                 });
+                menuitem.item = item;
+                menuitem.onclick = (e) => {
+                    let _item = e.target.item;
+                    if(_item.isRegistered()) {
+                        _item.unregisterFile();
+                    } else {
+                        _item.registerFile();
+                    }
+                    e.target.image = (_item.loaded) ? 'chrome://global/skin/icons/check.svg' : '';
+                };
                 styles_popup.append(menuitem);
             }
         });
