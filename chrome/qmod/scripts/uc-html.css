@@ -213,7 +213,7 @@ input[type="checkbox"]:after {
     padding: calc(var(--border-size) + 1px);
     box-sizing: border-box;
     background-origin: content-box;
-    background-image: url("chrome://global/skin/icons/check.svg") !important;
+    background-image: url("chrome://global/skin/icons/check.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

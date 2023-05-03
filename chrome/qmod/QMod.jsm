@@ -19,6 +19,7 @@ var qmod = {
     FILES_TO_LOAD: ['uc.css', 'as.css', 'uc.js'],
 
     enabled: Services.prefs.getBoolPref("qmod", false),
+    prefs: Services.prefs,
 
     sss: Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService),
 
@@ -107,6 +108,9 @@ var qmod = {
             // console.groupEnd();
         });
     },
+    _get_disabled: function() {
+        return this.prefs.getStringPref("qmod.disabled").split(';');
+    },
     _is_registered: function(file) {
         if (file.type.endsWith("css")) {
             let agent = (file.type == "as.css") ? this.sss.AGENT_SHEET : this.sss.USER_SHEET;
@@ -119,9 +123,11 @@ var qmod = {
             let agent = (file.type == "as.css") ? this.sss.AGENT_SHEET : this.sss.USER_SHEET;
             if (reload && this.sss.sheetRegistered(file.fileUri, agent)) this.sss.unregisterSheet(file.fileUri, agent);
             if (reload || !this.sss.sheetRegistered(file.fileUri, agent)) {
-                this.sss.loadAndRegisterSheet(file.fileUri, agent);
-                file.loaded = true;
-                console.info("QMod - Loaded:", file.name);
+                if(!this._get_disabled().includes(file.name)) {
+                    this.sss.loadAndRegisterSheet(file.fileUri, agent);
+                    file.loaded = true;
+                    console.info("QMod - Loaded:", file.name);
+                }
                 return true;
             } else console.info("QMod - Already Loaded:", file.name);
         } else if (file.type == 'uc.js') {

@@ -140,8 +140,10 @@ qmod.widgets.menu = {
                 menuitem.onclick = (e) => {
                     let _item = e.target.item;
                     if(_item.isRegistered()) {
+                        this._set_disabled_pref(_item.name, true);
                         _item.unregisterFile();
                     } else {
+                        this._set_disabled_pref(_item.name, false);
                         _item.registerFile();
                     }
                     e.target.image = (_item.loaded) ? 'chrome://global/skin/icons/check.svg' : '';
@@ -149,6 +151,16 @@ qmod.widgets.menu = {
                 styles_popup.append(menuitem);
             }
         });
+    },
+    _set_disabled_pref: function(name, disabled) {
+        let items = qmod.prefs.getStringPref("qmod.disabled").split(';');
+        if (disabled) items.push(name);
+        else {
+            let index = items.findIndex(v => v === name);
+            if(index >= 0) items.splice(index,1);
+        }
+
+        qmod.prefs.setStringPref("qmod.disabled", items.join(';').replace(/^;/, ''));
     },
 
     destroy: function() {
